@@ -1,0 +1,9 @@
+student_id,name,gender,math,reading,writing,attendance
+1,Aisha,F,78,74,80,0.92
+2,Noah,M,65,70,60,0.85
+3,Liam,M,90,88,92,0.97
+4,Sophia,F,55,60,,0.80
+5,Mia,F,82,79,85,0.94
+6,Ethan,M,40,50,45,0.70
+7,Olivia,F,73,,75,0.88
+8,James,M,88,84,86,0.95

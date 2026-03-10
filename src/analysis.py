@@ -25,3 +25,6 @@ print(df.head(8))
 df["pass"] = np.where(df["avg_score"] >= 60, "Yes", "No")
 print(df[["name", "avg_score", "pass"]].head(8))
 
+########        
+print("Average Math score :",df["math"].mean())
+print("Average Pass Score :",(df["pass"] == "Yes").mean())

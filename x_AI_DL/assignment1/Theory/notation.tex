@@ -1,0 +1,193 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Otto-Friedrich-University of Bamberg
+% Chair of Explainable Machine Learning (xAI)
+% Deep Learning Assignments
+% LaTeX Template
+% Version 1.0
+%
+% Original template has been downloaded from:
+% https://de.overleaf.com/latex/templates/maths-coursework-template/kbyhcwmjdtpf
+%
+% Original author:
+% Qiao Han
+%
+% License:
+% Creative Commons CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+%
+% Author:
+% Sebastian Dörrich
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% quick way of adding a figure
+\newcommand{\fig}[3]{
+ \begin{center}
+ \scalebox{#3}{\includegraphics[#2]{#1}}
+ \end{center}
+}
+
+\newcommand{\ci}[0]{\perp\!\!\!\!\!\perp} % conditional independence
+\newcommand{\point}[1]{{#1}} % points 
+\renewcommand{\vec}[1]{{\boldsymbol{{#1}}}} % vector
+\newcommand{\mat}[1]{{\boldsymbol{{#1}}}} % matrix
+\newcommand{\R}[0]{\mathds{R}} % real numbers
+\newcommand{\Z}[0]{\mathds{Z}} % integers
+\newcommand{\N}[0]{\mathds{N}} % natural numbers
+\newcommand{\nat}[0]{\mathds{N}} % natural numbers
+\newcommand{\Q}[0]{\mathds{Q}} % rational numbers
+\ifxetex
+\newcommand{\C}[0]{\mathds{C}} % complex numbers
+\else
+\newcommand{\C}[0]{\mathds{C}} % complex numbers
+\fi
+\newcommand{\tr}[0]{\text{tr}} % trace
+\renewcommand{\d}[0]{\mathrm{d}} % total derivative
+\newcommand{\inv}{^{-1}} % inverse
+\newcommand{\id}{\mathrm{id}} % identity mapping
+\renewcommand{\dim}{\mathrm{dim}} % dimension
+\newcommand{\rank}[0]{\mathrm{rk}} % rank
+\newcommand{\determ}[1]{\mathrm{det}(#1)} % determinant
+\newcommand{\scp}[2]{\langle #1 , #2 \rangle}
+\newcommand{\kernel}[0]{\mathrm{ker}} % kernel/nullspace
+\newcommand{\img}[0]{\mathrm{Im}} % image
+\newcommand{\idx}[1]{{(#1)}}
+\DeclareMathOperator*{\diag}{diag}
+\newcommand{\E}{\mathds{E}} % expectation
+\newcommand{\var}{\mathds{V}} % variance
+\newcommand{\gauss}[2]{\mathcal{N}\big(#1,\,#2\big)} % gaussian distribution N(.,.)
+\newcommand{\gaussx}[3]{\mathcal{N}\big(#1\,|\,#2,\,#3\big)} % gaussian distribution N(.|.,.)
+\newcommand{\gaussBig}[2]{\mathcal{N}\left(#1,\,#2\right)} % see above, but with brackets that adjust to the height of the arguments
+\newcommand{\gaussxBig}[3]{\mathcal{N}\left(#1\,|\,#2,\,#3\right)} % see above, but with brackets that adjust to the height of the arguments
+\DeclareMathOperator{\cov}{Cov} % covariance (matrix) 
+\ifxetex
+\renewcommand{\T}[0]{^\top} % transpose
+\else
+\newcommand{\T}[0]{^\top}
+\fi
+% matrix determinant
+\newcommand{\matdet}[1]{
+\left|
+\begin{matrix}
+#1
+\end{matrix}
+\right|
+}
+
+%----------------------------------------------------------------------------------------
+% COLOUR: the xAILab palette, and one colour per meaning
+%----------------------------------------------------------------------------------------
+% The palette is the lab's PowerPoint theme "xAILab Poster". Do not introduce colours
+% outside it, and do not add a new \somecolour{} macro: pick the semantic command that
+% fits, or add one here with a comment saying what it means.
+%
+%   xaiInk      body text, headings
+%   xaiInkSoft  secondary text, rules
+%   xaiTint     tinted box background
+%   xaiAccent   links, \emph, code identifiers, block labels
+%   xaiTool     a tool or product name          (\highlighttool)
+%   xaiFile     a file or folder name           (\highlightfile)
+%   xaiAlert    a warning                       (\highlightimportant, attention)
+% The \definecolor lines for this palette are in includes.tex, which loads first.
+
+%--- the four semantic commands -----------------------------------------------
+% Anything that is a name in the code: function, method, class, parameter,
+% variable or literal value. This is the one to reach for.
+\newcommand{\code}[1]{\texttt{\textcolor{xaiAccent}{#1}}}
+\newcommand{\highlightfile}[1]{\texttt{\textcolor{xaiFile}{#1}}}
+\newcommand{\highlighttool}[1]{\texttt{\textcolor{xaiTool}{#1}}}
+\newcommand{\highlightimportant}[1]{\texttt{\textcolor{xaiAlert}{#1}}}
+
+% The label that opens a structured block, e.g. "Parameters:" or "Hints:".
+\newcommand{\blocklabel}[1]{\textbf{\textcolor{xaiAccent}{#1}}}
+
+% The grader-only solution text. Only ever appears in the *_solutions PDFs.
+\newcommand{\solution}[1]{{\color{xaiTool}#1}}
+
+%--- deprecated aliases -------------------------------------------------------
+% The documents used eleven colours to mean "a name in the code". They all map to
+% \code now, so nothing had to be rewritten. Use \code in new text; these stay so
+% the existing call sites keep working.
+\newcommand{\bluettt}[1]{\code{#1}}
+\newcommand{\redttt}[1]{\code{#1}}
+\newcommand{\greenttt}[1]{\code{#1}}
+\newcommand{\orangettt}[1]{\code{#1}}
+\newcommand{\magentattt}[1]{\code{#1}}
+\newcommand{\purplettt}[1]{\code{#1}}
+\newcommand{\cyanttt}[1]{\code{#1}}
+\newcommand{\deepskybluettt}[1]{\code{#1}}
+\newcommand{\darkgoldenrodttt}[1]{\code{#1}}
+\newcommand{\purple}[1]{{\color{xaiAccent}#1}}   % used as \purple{\texttt{name}}
+\newcommand{\magenta}[1]{{\color{xaiAccent}#1}}
+\newcommand{\cyan}[1]{{\color{xaiAccent}#1}}
+\newcommand{\orange}[1]{{\color{xaiAccent}#1}}
+\newcommand{\green}[1]{{\color{xaiAccent}#1}}
+\newcommand{\blue}[1]{{\color{xaiAccent}#1}}
+\newcommand{\teal}[1]{\solution{#1}}
+% These two wrapped whole hint and parameter blocks. The label now carries the
+% emphasis (\blocklabel), so the body is plain text.
+\newcommand{\deepskyblue}[1]{#1}
+\newcommand{\darkgoldenrod}[1]{#1}
+\newcommand{\red}[1]{{\color{xaiAlert}#1}}
+
+% Literal colours, for prose that names a colour visible in a figure
+% ("the green circles"). Not part of the palette, and not to be used for emphasis.
+\newcommand{\figred}[1]{{\color{red}#1}}
+\newcommand{\figgreen}[1]{{\color{darkgreen}#1}}
+
+% emph is left alone on purpose: it means italics to every LaTeX author. It used to
+% be redefined here as bold blue, which collided with the link colour.
+
+% place a colored box around a character
+\gdef\colchar#1#2{%
+  \tikz[baseline]{%
+  \node[anchor=base,inner sep=2pt,outer sep=0pt,fill = #2!20] {#1};
+    }%
+}%
+
+%----------------------------------------------------------------------------------------
+% Math commands
+%----------------------------------------------------------------------------------------
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\vct}[1]{\boldsymbol{#1}}
+\newcommand{\vecy}{\ensuremath{\mathbf{y}}\xspace}
+\newcommand{\vecx}{\ensuremath{\mathbf{x}}\xspace}
+\newcommand{\completed}{\ensuremath{\texttt{comp}}\xspace}
+\newcommand{\tuple}[1]{\ensuremath{\langle {#1} \rangle}}
+
+\newcommand{\toptop}{\operatornamewithlimits{\mathbf{top}}}
+\newcommand{\xuptot}{\ensuremath{\mathit{x}_{\leq t}}\xspace}
+\newcommand{\best}{\ensuremath{\mathit{best}}\xspace}
+\newcommand{\bestuptoi}{\ensuremath{\texttt{best}_{\leq i}}\xspace}
+\newcommand{\bestuptot}{\ensuremath{\texttt{best}_{\leq t}}\xspace}
+
+\newcommand{\startsym}{\mbox{\scriptsize \texttt{<s>}}\xspace}
+\newcommand{\stopsym}{\mbox{\scriptsize \texttt{</s>}}\xspace}
+\newcommand{\startsymbol}{\mbox{\scriptsize \texttt{<SOS>}}\xspace}
+\newcommand{\stopsymbol}{\mbox{\scriptsize \texttt{<EOS>}}\xspace}
+
+\newcommand{\argmin}{\mathop{\mathrm{argmin}}}
+\newcommand{\argmax}{\mathop{\mathrm{argmax}}}
+\newcommand{\norm}[1]{\left| \hspace{-0.7pt}\left|#1\right| \hspace{-0.7pt}\right|}
+
+% Closure of a set
+\newcommand{\ols}[1]{\mskip.5\thinmuskip\overline{\mskip-.5\thinmuskip {#1} \mskip-.5\thinmuskip}\mskip.5\thinmuskip} % overline short
+\newcommand{\olsi}[1]{\,\overline{\!{#1}}} % overline short italic
+\makeatletter
+\newcommand\closure[1]{
+  \tctestifnum{\count@stringtoks{#1}>1} %checks if number of chars in arg > 1 (including '\')
+  {\ols{#1}} %if arg is longer than just one char, e.g. \mathbb{Q}, \mathbb{F},...
+  {\olsi{#1}} %if arg is just one char, e.g. K, L,...
+}
+
+\long\def\count@stringtoks#1{\tc@earg\count@toks{\string#1}}
+\long\def\count@toks#1{\the\numexpr-1\count@@toks#1.\tc@endcnt}
+\long\def\count@@toks#1#2\tc@endcnt{+1\tc@ifempty{#2}{\relax}{\count@@toks#2\tc@endcnt}}
+\def\tc@ifempty#1{\tc@testxifx{\expandafter\relax\detokenize{#1}\relax}}
+\long\def\tc@earg#1#2{\expandafter#1\expandafter{#2}}
+\long\def\tctestifnum#1{\tctestifcon{\ifnum#1\relax}}
+\long\def\tctestifcon#1{#1\expandafter\tc@exfirst\else\expandafter\tc@exsecond\fi}
+\long\def\tc@testxifx{\tc@earg\tctestifx}
+\long\def\tctestifx#1{\tctestifcon{\ifx#1}}
+\long\def\tc@exfirst#1#2{#1}
+\long\def\tc@exsecond#1#2{#2}
+\makeatother

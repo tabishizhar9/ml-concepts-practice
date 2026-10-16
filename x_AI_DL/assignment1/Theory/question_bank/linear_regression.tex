@@ -1,0 +1,25 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Otto-Friedrich-University of Bamberg
+% Chair of Explainable Machine Learning (xAI)
+% Deep Learning Assignments
+% LaTeX Template
+% Version 1.0
+%
+% Author:
+% Sebastian Dörrich
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+
+%----------------------------------------------------------------------------------------
+% Linear Regression
+%----------------------------------------------------------------------------------------
+\section{Linear Regression [2 points]}
+The loss function $\mathcal{L}$ of a Linear Regression model with a scalar input $x$ and scalar output $y$ is given by:
+\begin{equation}
+    \mathcal{L} = \frac{1}{N} \sum_{i=1}^{N} (w_0 + w_1x_i - y_i)^2
+\end{equation}
+In this simple 1D case, we are fitting a straight line to the dataset. This line is determined by its 
+offset along the $y$-axis $\left(w_0\right)$ and its slope $\left(w_1\right)$. Compute the partial derivative of the loss w.r.t. the y-offset $\left(\frac{\partial \mathcal{L}}{\partial w_0}\right)$ and the partial derivative of the loss w.r.t. the slope $\left(\frac{\partial \mathcal{L}}{\partial w_1}\right)$.
+

@@ -1,0 +1,29 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Otto-Friedrich-University of Bamberg
+% Chair of Explainable Machine Learning (xAI)
+% Deep Learning Assignments
+% LaTeX Template
+% Version 1.0
+%
+% Original template has been downloaded from:
+% https://de.overleaf.com/latex/templates/maths-coursework-template/kbyhcwmjdtpf
+%
+% Original author:
+% Qiao Han
+%
+% License:
+% Creative Commons CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+%
+% Author:
+% Sebastian Dörrich
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesPackage{dsfont}
+  [1995/08/01 v0.1 Double stroke roman fonts]
+
+\def\ds@whichfont{dsrom}
+\DeclareOption{sans}{\def\ds@whichfont{dsss}}
+\ProcessOptions\relax
+
+\DeclareMathAlphabet{\mathds}{U}{\ds@whichfont}{m}{n}
+\endinput

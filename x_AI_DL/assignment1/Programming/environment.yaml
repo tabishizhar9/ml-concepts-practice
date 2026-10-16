@@ -1,0 +1,45 @@
+# Otto-Friedrich University of Bamberg
+# Chair of Explainable Machine Learning (xAI)
+# Deep Learning Assignments
+#
+# @description:
+# Contains all the required packages for the current assignment.
+#
+# @author: Sebastian Doerrich
+# @copyright: Copyright (c) 2022-2026 xAILab Bamberg, Chair of Explainable Machine Learning (xAI), Otto-Friedrich University of Bamberg
+# @credits: [Christian Ledig, Sebastian Doerrich]
+# @license: CC BY-SA
+# @version: see changelog.md
+# @python: Python 3
+# @maintainer: Sebastian Doerrich
+# @email: sebastian.doerrich@uni-bamberg.de
+# @status: Production
+
+
+# Channels: conda-forge only.
+# The `defaults` and `anaconda` channels were dropped in WS 26/27. Miniforge installs
+# conda-forge by default, so this file works out of the box after a Miniforge install,
+# and the Anaconda terms of service for institutional use of `defaults` do not apply.
+#
+#     conda env create -f environment.yaml
+#     conda activate xai-dl-a1
+#
+# Versions are pinned to a minor release. If a package fails to solve on your platform,
+# report it rather than removing the pin: an unpinned package means your results can
+# differ from the ones the tests expect.
+
+name: xai-dl-a1
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - jupyter=1.1
+  - numpy=2.5
+  - matplotlib=3.11
+  - scikit-image=0.26
+  - pillow=12.3
+  # PyTorch, CPU build. Everything in this assignment runs on a CPU in reasonable time.
+  # With an NVIDIA GPU, replace pytorch-cpu with `pytorch-gpu=2.13`, or follow
+  # https://pytorch.org/get-started/locally/ if you prefer to install it with pip.
+  - pytorch-cpu=2.13
+  - pip

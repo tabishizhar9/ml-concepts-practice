@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Otto-Friedrich-University of Bamberg
+% Chair of Explainable Machine Learning (xAI)
+% Deep Learning Assignments
+% LaTeX Template
+% Version 1.0
+%
+% Author:
+% Sebastian Dörrich
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+
+%----------------------------------------------------------------------------------------
+% Derivatives
+%----------------------------------------------------------------------------------------
+\section{Derivatives [8 points]}
+\subsection{Partial Derivative [2 points]}
+    Given:
+    \begin{equation}
+        f(x) =
+        \begin{pmatrix}
+            {\rm e}^{x_1} {\rm sin}\left(x_3\right)
+            \\\\
+            \sqrt{x_2 + x_3}
+        \end{pmatrix} \qquad \text{with } f: \mathds{R}^3 \mapsto \mathds{R}^2
+    \end{equation}
+    Calculate the matrix of partial derivatives $\frac{\partial f}{\partial x}(x)$.
+    
+    \bymode{}{\vspace{0.5cm}}{}
+    
+\taskbreak
+
+\subsection{Derivative of the Sigmoid Function [4 points]}
+    \begin{itemize}
+        \item[a)] The sigmoid function is defined as:
+            \begin{equation}
+                \sigma(x) = \frac{1}{1 + {\rm e}^{-x}} \qquad \text{with } \sigma: \mathds{R}^1 \mapsto \mathds{R}^1
+            \end{equation}
+            Calculate $\sigma'(x)$. The solution should be simplified as much as possible and include the sigmoid function somehow...
+        
+        \subtaskbreak
+        
+        \item[b)] With $a: \mathds{R}^1 \mapsto \mathds{R}^1$, we can define a function $f(x)$ as:
+            \begin{equation}
+                f(x) = 
+                \begin{pmatrix}
+                    a(x_1) \\
+                    \vdots \\
+                    a(x_n)
+                \end{pmatrix}
+            \end{equation}
+            Calculate the matrix of partial derivatives $\frac{\partial f}{\partial x}(x)$.
+            
+        \subtaskbreak
+        
+        \item[c)] Replace $a$ in the function above with the sigmoid function $\sigma$, such as:
+            \begin{equation}
+                f(x) = 
+                \begin{pmatrix}
+                    \sigma(x_1) \\
+                    \vdots \\
+                    \sigma(x_n)
+                \end{pmatrix}
+            \end{equation}
+            Calculate the matrix of partial derivatives $\frac{\partial f}{\partial x}(x)$.
+        
+        \subtaskbreak
+        
+        \item[d)] What property has the resulting matrix $\frac{\partial f}{\partial x}(x)$ of task c?
+        
+    \end{itemize}
+    
+\taskbreak
+
+\subsection{Weight Matrix [2 points]}
+Let $\mathbf{W} \in \mathds{R}^{m \times n}, \mathbf{x} \in \mathds{R}^{n}$ and $\mathbf{y} = \mathbf{Wx}$.
+\begin{itemize}
+    \item[a)] Calculate the partial derivative $\frac{\partial \mathbf{y}}{\partial \mathbf{x}}$.
+        
+    \subtaskbreak
+    
+    \item[b)] Calculate $\frac{\partial y_k}{\partial w_{ij}}$ for $k \in \{1, ..., m\}$, $i \in \{1, ..., m\}$ and $j \in \{1, ..., n\}$.
+    
+    \subtaskbreak
+    
+    \item[c)] Let $\mathbf{A} \in \mathds{R}^{1 \times m}$. Simplify
+        \begin{equation}
+            \widehat{w}_{ij} = \mathbf{A} \frac{\partial \mathbf{y}}{\partial w_{ij}}
+        \end{equation}
+        
+\end{itemize}

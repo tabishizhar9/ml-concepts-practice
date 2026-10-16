@@ -1,0 +1,386 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Otto-Friedrich-University of Bamberg
+% Chair of Explainable Machine Learning (xAI)
+% Deep Learning Assignments
+% LaTeX Template
+% Version 1.0
+%
+% Original template has been downloaded from:
+% https://de.overleaf.com/latex/templates/maths-coursework-template/kbyhcwmjdtpf
+%
+% Original author:
+% Qiao Han
+%
+% License:
+% Creative Commons CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+%
+% Author:
+% Sebastian Dörrich
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%----------------------------------------------------------------------------------------
+% USED PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\usepackage{ifxetex}
+\usepackage{textpos}
+\usepackage[round]{natbib} % \citet{key} -> Author et al. (Year); papers live in references.bib
+\usepackage{kpfonts}
+\usepackage[a4paper,hmargin=2.8cm,vmargin=2.0cm,includeheadfoot]{geometry}
+\usepackage{ifxetex}
+\usepackage{stackengine}
+\usepackage{tabularx,longtable,multirow,caption, subcaption} % hangcaption
+\usepackage{fncylab} % formatting of labels
+\usepackage{fancyhdr}
+%\usepackage{color}
+\usepackage[tight,ugly]{units}
+\usepackage{url}
+\usepackage{float}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+% todonotes was loaded but never used, and its \todo clashed with the todo
+% environment defined below. Removed; re-add it if you ever want margin notes.
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{dsfont}
+\usepackage{epstopdf} % automatically replace .eps with .pdf in graphics
+% natbib is loaded once, above; the back-references ("Cited on page ...") in the
+% bibliography come from hyperref's pagebackref option, which loads backref itself.
+\usepackage{array}
+\usepackage{latexsym}
+\usepackage{etoolbox}
+\usepackage{booktabs}
+\usepackage{fancyvrb}
+
+\usepackage{enumerate} % for numbering with [a)] format 
+
+%----------------------------------------------------------------------------------------
+% Maths
+%----------------------------------------------------------------------------------------
+\usepackage{xspace}
+
+%----------------------------------------------------------------------------------------
+% Own style for embedding python code in the text
+%----------------------------------------------------------------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
+
+%----------------------------------------------------------------------------------------
+% The xAILab palette (the lab's PowerPoint theme "xAILab Poster")
+%----------------------------------------------------------------------------------------
+% Defined here rather than in notation.tex because includes.tex is loaded first and
+% both the listings style and hyperref below need them. The semantic commands that
+% use them (\code, \highlightfile, \highlighttool, \highlightimportant, \blocklabel)
+% live in notation.tex. Do not add colours outside this palette.
+\definecolor{xaiInk}{HTML}{1C1C28}
+\definecolor{xaiInkSoft}{HTML}{2B2B3A}
+\definecolor{xaiTint}{HTML}{F3F3FD}
+\definecolor{xaiAccent}{HTML}{5656E6}
+\definecolor{xaiTool}{HTML}{814CB3}
+\definecolor{xaiFile}{HTML}{B73F74}
+\definecolor{xaiAlert}{HTML}{EE3334}
+% literal colours for prose that names a colour in a figure (see \figgreen)
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor={},
+    commentstyle=\color{xaiInkSoft},
+    keywordstyle=\color{xaiAccent},
+    stringstyle=\color{xaiFile},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,               
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle, escapeinside={(*@}{@*)}}
+
+\newcommand\inlinecode[1]{{\lstinline!#1!}}
+
+
+
+\ifxetex
+\usepackage{fontspec}
+\setmainfont[Scale=.8]{OpenDyslexic-Regular}
+\else
+\usepackage[pdftex,pagebackref,hypertexnames=false,colorlinks]{hyperref} % provide links in pdf
+\hypersetup{pdftitle={},
+  pdfsubject={}, 
+  pdfauthor={},
+  pdfkeywords={}, 
+  pdfstartview=FitH,
+  pdfpagemode={UseOutlines},% None, FullScreen, UseOutlines
+  bookmarksnumbered=true, bookmarksopen=true, colorlinks=true,
+    citecolor=xaiInk,%
+    filecolor=xaiFile,%
+    linkcolor=xaiAccent,%
+    urlcolor=xaiAccent}
+\usepackage[all]{hypcap}
+\fi
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+%----------------------------------------------------------------------------------------
+% The two boxed blocks
+%----------------------------------------------------------------------------------------
+% \begin{todo} ... \end{todo}        what the student has to implement
+% \begin{attention} ... \end{attention}   a warning they must not miss
+% Both are breakable, so a long list still splits across a page.
+\newtcolorbox{todo}[1][]{%
+  breakable, enhanced,
+  colback=xaiTint, colframe=xaiAccent,
+  boxrule=0pt, leftrule=2.5pt, arc=1pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  before upper={\textbf{\textcolor{xaiAccent}{ToDo}}\par\smallskip},
+  #1}
+\newtcolorbox{attention}[1][]{%
+  breakable, enhanced,
+  colback=white, colframe=xaiAlert,
+  boxrule=0pt, leftrule=2.5pt, arc=1pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  before upper={\textbf{\textcolor{xaiAlert}{Attention}}\par\smallskip},
+  #1}
+
+%----------------------------------------------------------------------------------------
+% One source, three documents
+%----------------------------------------------------------------------------------------
+% Every theory question used to exist three times: the question file, a _solution copy
+% that reproduced the question verbatim and added the answer, and a third copy under
+% student_version/ for the writeup template. They drifted, which is what item X1 was:
+% a weight vector that was R^2 in the question and R^1 in the template, making the task
+% unsolvable as stated. Now there is one file per question, rendered three ways.
+%
+%   \DLmode = 0   student description   answer hidden, space left for it
+%           = 1   grader version        answer shown
+%           = 2   writeup template      answer hidden, a fresh page for it
+%
+% main.tex does not set it. The build script selects a mode on the command line:
+%
+%   latexmk -pdf -usepretex='\def\DLmode{0}' main.tex
+%
+% and the default below is 1, so opening main.tex in Overleaf still gives the grader
+% version, exactly as before.
+\providecommand{\DLmode}{1}
+
+\usepackage{comment}
+
+% \begin{answer} ... \end{answer}  the worked solution. Only ever rendered in mode 1.
+%
+% IMPORTANT: this hides the answer, it does not remove it from the file. The writeup
+% template shipped to students must therefore be built by a script that STRIPS these
+% blocks (scripts/build_writeup_templates.sh), never by shipping the source with
+% \DLmode=2. Hiding is a rendering decision; not shipping is a security one.
+% Shown: an ordinary environment, so the body is typeset the way it always was.
+% Hidden: \excludecomment from the comment package, which skips to \end{answer}
+% without expanding anything, so an unfinished macro inside an answer cannot break
+% the student description.
+% (\specialcomment was tried for the shown case and is not worth it: it round-trips
+% the body through a file and falls over on nested environments.)
+% The label ends with \\ rather than \par on purpose. The old form was
+% \teal{ Solution:\\ ... }, which leaves the paragraph open, and several answers rely
+% on that: they put a \\ straight after a figure, which is legal inside a paragraph
+% (a float does not break one) and an error in vertical mode. Ending the label with
+% \par instead produced "There's no line here to end." in three answers.
+\ifnum\DLmode=1
+  \newenvironment{answer}%
+    {\par\smallskip\noindent\color{xaiTool}\blocklabel{Solution:}\\}%
+    {\par\smallskip}
+\else
+  \excludecomment{answer}
+\fi
+
+% \bymode{<description>}{<grader>}{<writeup>}
+% The general form: emit different material in each of the three documents. Inside a
+% question file it is now used only for grader-only spacing before an answer, e.g.
+% \bymode{}{\vspace{0.5cm}}{}. Page breaks between questions use the two macros below.
+\newcommand{\bymode}[3]{\ifcase\DLmode #1\or #2\or #3\fi}
+
+% Page breaks between questions. These two macros are the ONLY separators a theory
+% question file uses: no bare \newpage, \vfill or \bymode{...}{...}{\newpage} between
+% questions. The layout they produce:
+%   description and grader version  one numbered task (1.1, 1.2, ...) per page; its
+%                                   lettered subtasks a), b), ... flow on that page
+%   writeup template                one lettered subtask per page, because the student
+%                                   writes the answer under it and the guidelines ask for
+%                                   each problem/subproblem on a separate page
+% Rules:
+%   1. Always AFTER \end{answer}, never before \begin{answer}. The template strips the
+%      answer and the student writes in its place; a break before it would put their
+%      answer on the next question's page.
+%   2. One macro per boundary: \subtaskbreak after a lettered subtask that another one
+%      follows, \taskbreak after the last answer of a numbered task. A task without
+%      lettered subtasks gets only \taskbreak. Lettered items that share one answer and
+%      trailing notes (a4 4.2, 4.3) stay together.
+%   3. theory.tex separates the question files with \taskbreak too.
+% A \newpage inside a question's own text (a worked example before "Now it is your
+% turn") or inside an answer is layout, not a separator, and is allowed.
+\newcommand{\subtaskbreak}{\par\bymode{\medskip}{\medskip}{\newpage}}
+\newcommand{\taskbreak}{\par\clearpage}
+
+
+% various theorems
+\usepackage{ntheorem}
+\theoremstyle{break}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+\newtheorem{proof}{Proof}
+
+% example-environment
+\newenvironment{example}[1][]
+{ 
+\vspace{4mm}
+\noindent\makebox[\linewidth]{\rule{\hsize}{1.5pt}}
+\textbf{Example #1}\\
+}
+{ 
+\noindent\newline\makebox[\linewidth]{\rule{\hsize}{1.0pt}}
+}
+
+\ifxetex
+\else
+\renewcommand*{\rmdefault}{bch} % Charter
+\renewcommand*{\ttdefault}{cmtt} % Computer Modern Typewriter
+\fi
+
+\setlength{\parindent}{0em}  % indentation of paragraph
+
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+\fancyfoot[ER,OL]{\thepage}%Page no. in the left on
+                                %odd pages and on right on even pages
+\fancyfoot[OC,EC]{\sffamily }
+
+% One item in the running head, not two. fancyhdr's default puts \leftmark
+% (section) and \rightmark (subsection) on the same line; these headings carry
+% their point totals, so the two ran into each other on most pages of the coding
+% parts. Show only the current section, and not in capitals.
+\fancyhead{}
+\fancyhead[LE,RO]{\slshape\nouppercase{\leftmark}}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+\renewcommand{\subsectionmark}[1]{}
+
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0.1pt}
+\captionsetup{margin=10pt,font=small,labelfont=bf}
+
+
+%--- chapter heading
+
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright
+    \interlinepenalty\@M
+    \Huge \bfseries 
+    \thechapter \space\space #1\par\nobreak
+    \vskip 30\p@
+  }}
+
+%---chapter heading for \chapter*  
+\def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright
+    \sffamily
+    \interlinepenalty\@M
+    \Huge \bfseries  
+    #1\par\nobreak
+    \vskip 30\p@
+  }}
+  
+
+% %%%%%%%%%%%%% boxit
+\def\Beginboxit
+   {\par
+    \vbox\bgroup
+	   \hrule
+	   \hbox\bgroup
+		  \vrule \kern1.2pt %
+		  \vbox\bgroup\kern1.2pt
+   }
+
+\def\Endboxit{%
+			      \kern1.2pt
+		       \egroup
+		  \kern1.2pt\vrule
+		\egroup
+	   \hrule
+	 \egroup
+   }	
+
+\newenvironment{boxit}{\Beginboxit}{\Endboxit}
+\newenvironment{boxit*}{\Beginboxit\hbox to\hsize{}}{\Endboxit}
+
+
+
+\allowdisplaybreaks
+
+\makeatletter
+\newcounter{elimination@steps}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash$}p{#1}<{$}}
+\def\elimination@num@rights{}
+\def\elimination@num@variables{}
+\def\elimination@col@width{}
+\newenvironment{elimination}[4][0]
+{
+    \setcounter{elimination@steps}{0}
+    \def\elimination@num@rights{#1}
+    \def\elimination@num@variables{#2}
+    \def\elimination@col@width{#3}
+    \renewcommand{\arraystretch}{#4}
+    \start@align\@ne\st@rredtrue\m@ne
+}
+{
+    \endalign
+    \ignorespacesafterend
+}
+\newcommand{\eliminationstep}[2]
+{
+    \ifnum\value{elimination@steps}>0\leadsto\quad\fi
+    \left[
+        \ifnum\elimination@num@rights>0
+            \begin{array}
+            {@{}*{\elimination@num@variables}{R{\elimination@col@width}}
+            |@{}*{\elimination@num@rights}{R{\elimination@col@width}}}
+        \else
+            \begin{array}
+            {@{}*{\elimination@num@variables}{R{\elimination@col@width}}}
+        \fi
+            #1
+        \end{array}
+    \right]
+    & 
+    \begin{array}{l}
+        #2
+    \end{array}
+    &%                                    moved second & here
+    \addtocounter{elimination@steps}{1}
+}
+\makeatother
+
+%% Fast macro for column vectors
+\makeatletter  
+\def\colvec#1{\expandafter\colvec@i#1,,,,,,,,,\@nil}
+\def\colvec@i#1,#2,#3,#4,#5,#6,#7,#8,#9\@nil{% 
+  \ifx$#2$ \begin{bmatrix}#1\end{bmatrix} \else
+    \ifx$#3$ \begin{bmatrix}#1\\#2\end{bmatrix} \else
+      \ifx$#4$ \begin{bmatrix}#1\\#2\\#3\end{bmatrix}\else
+        \ifx$#5$ \begin{bmatrix}#1\\#2\\#3\\#4\end{bmatrix}\else
+          \ifx$#6$ \begin{bmatrix}#1\\#2\\#3\\#4\\#5\end{bmatrix}\else
+            \ifx$#7$ \begin{bmatrix}#1\\#2\\#3\\#4\\#5\\#6\end{bmatrix}\else
+              \ifx$#8$ \begin{bmatrix}#1\\#2\\#3\\#4\\#5\\#6\\#7\end{bmatrix}\else
+                 \PackageError{Column Vector}{The vector you tried to write is too big, use bmatrix instead}{Try using the bmatrix environment}
+              \fi
+            \fi
+          \fi
+        \fi
+      \fi
+    \fi
+  \fi 
+}  
+\makeatother
+
+\robustify{\colvec}
